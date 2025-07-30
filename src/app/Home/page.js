@@ -4,7 +4,6 @@ import Image from "next/image";
 import axios from "axios";
 import { motion } from "framer-motion";
 
-// Helper: Calculate contrast color (black or white) based on background
 function getContrastColor(bgColor) {
   const hex = bgColor.replace("#", "");
   const r = parseInt(hex.substring(0, 2), 16);
@@ -118,7 +117,6 @@ The user's mood is: "${mode}"
 
   const textColor = result?.backgroundColor ? getContrastColor(result.backgroundColor) : "#222";
 
-  // Animation variants
   const fadeUp = (delay = 0) => ({
     initial: { y: 80, opacity: 0 },
     animate: { y: 0, opacity: 1, transition: { delay, duration: 0.6, ease: "easeOut" } },
@@ -151,7 +149,6 @@ The user's mood is: "${mode}"
           onFocus={() => setFocused(true)}
           onBlur={() => setFocused(false)}
         />
-        {/* Only show label if not focused and input is empty */}
         {!(focused || mode) && (
           <label htmlFor="name" className="label">Describe your vibe…</label>
         )}
