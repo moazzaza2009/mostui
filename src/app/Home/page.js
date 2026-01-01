@@ -60,7 +60,7 @@ The user's mood is: "${mode}"
 `;
 
       const response = await axios.post(
-        "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent",
+        "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent",
         {
           contents: [
             {
@@ -146,6 +146,12 @@ The user's mood is: "${mode}"
           name="name"
           required
           disabled={loading}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              e.preventDefault();
+              if (!loading && mode.trim()) generate();
+            }
+          }}
           onFocus={() => setFocused(true)}
           onBlur={() => setFocused(false)}
         />
